@@ -9,28 +9,37 @@ const DashboardLayout = ({ children, activeMenu }) => {
 
   return (
     <div>
-      <Navbar activeMenu={activeMenu} onMenuToggle={() => setMenuOpen(!menuOpen)} />
+      <Navbar
+        activeMenu={activeMenu}
+        menuOpen={menuOpen}
+        onMenuToggle={() => setMenuOpen(!menuOpen)}
+      />
 
       {user && (
         <div className="flex">
-          {/* Desktop Menu */}
+          {/* Desktop Sidebar */}
           <div className="hidden lg:block">
             <SideMenu activeMenu={activeMenu} />
           </div>
 
-          {/* Mobile Slide Menu */}
+          {/* Mobile Sidebar + Transparent Overlay */}
           {menuOpen && (
-            <div className="fixed inset-0 z-50 bg-black bg-opacity-40 lg:hidden"
-                 onClick={() => setMenuOpen(false)}>
+            <>
               <div
-                className="w-64 h-full bg-white"
+                className="fixed inset-0 z-40 lg:hidden"
+                onClick={() => setMenuOpen(false)}
+              ></div>
+
+              <div
+                className="fixed left-0 top-0 w-64 h-full z-50 bg-white shadow-lg lg:hidden"
                 onClick={(e) => e.stopPropagation()}
               >
                 <SideMenu activeMenu={activeMenu} />
               </div>
-            </div>
+            </>
           )}
 
+          {/* Main content */}
           <div className="grow mx-4 md:mx-5">{children}</div>
         </div>
       )}
