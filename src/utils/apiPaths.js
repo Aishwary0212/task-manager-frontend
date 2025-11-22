@@ -1,7 +1,7 @@
 export const BASE_URL = process.env.VITE_BACKEND_URL;
 export const API_PATHS = {
     AUTH: {
-        REGISTER:"/api/auth/register",
+        REGISTER:"/api/auth/register",  
         LOGIN:"/api/auth/login",
         GET_PROFILE:"/api/auth/profile",
     },
