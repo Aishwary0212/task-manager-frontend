@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, CheckCircle } from "lucide-react";
 
+
 export default function LandingPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-100 flex flex-col justify-center items-center p-6">
       {/* Hero Section */}
@@ -24,25 +26,23 @@ export default function LandingPage() {
 
         {/* CTA Buttons */}
         <div className="flex justify-center gap-4 mt-8">
-          <Link to="/login">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-indigo-600 text-white rounded-xl shadow-lg flex items-center gap-2"
+            className="px-6 py-3 bg-indigo-600 text-white rounded-xl shadow-lg flex items-center gap-2"
+            onClick={() => navigate("/login")}
             >
               Login <ArrowRight size={18} />
             </motion.button>
-          </Link>
 
-          <Link to="/register">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-white border border-indigo-600 text-indigo-600 rounded-xl shadow-lg"
+            className="px-6 py-3 bg-white border border-indigo-600 text-indigo-600 rounded-xl shadow-lg"
+            onClick={()=>navigate("/signup")}
             >
               Sign Up
             </motion.button>
-          </Link>
         </div>
       </motion.div>
 
