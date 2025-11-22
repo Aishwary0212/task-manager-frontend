@@ -13,6 +13,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import UserProvider from "./context/userContext";
 import { UserContext } from "./context/userContext";
 import { Toaster } from "react-hot-toast";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <div>
         <Router>
           <Routes>
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
