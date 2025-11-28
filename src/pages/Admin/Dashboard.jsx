@@ -66,17 +66,17 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout activeMenu="Dashboard">
-      <div className="card my-5">
-        <div>
-          <div className="col-span-3">
-            <h2 className="text-xl md:text-2xl">Hello!! {user?.name}</h2>
-            <p className="text-xs md:text-[13px] text-gray-4000 mt-1.5">
-              {moment().format("dddd Do MMM YYYY")}
-            </p>
-          </div>
-        </div>
+      {/* Header Section */}
+      <div className="card my-4 px-4 py-5">
+        <h2 className="text-xl md:text-2xl font-semibold">
+          Hello, {user?.name} 👋
+        </h2>
+        <p className="text-xs md:text-sm text-gray-500 mt-1">
+          {moment().format("dddd, Do MMM YYYY")}
+        </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mt-5 font-bold">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
           <InfoCard
             label="Total Tasks"
             value={addThousandsSeparator(
@@ -85,21 +85,21 @@ const Dashboard = () => {
             color="bg-primary"
           />
           <InfoCard
-            label="Pending Tasks"
+            label="Pending"
             value={addThousandsSeparator(
               dashboardData?.charts?.taskDistribution?.Pending || 0
             )}
             color="bg-violet-500"
           />
           <InfoCard
-            label="In Progress Tasks"
+            label="In Progress"
             value={addThousandsSeparator(
               dashboardData?.charts?.taskDistribution?.InProgress || 0
             )}
             color="bg-cyan-500"
           />
           <InfoCard
-            label="Completed Tasks"
+            label="Completed"
             value={addThousandsSeparator(
               dashboardData?.charts?.taskDistribution?.Completed || 0
             )}
@@ -107,43 +107,40 @@ const Dashboard = () => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4 md:my-6">
-        <div>
-          <div className="card">
-            <div className="flex items-center justify-between">
-              <h5 className="font-medium">Task Distribution</h5>
-            </div>
 
-            <CustomPieChart
-              data={pieChartData}
-              label="Task Balance"
-              colors={COLORS}
-            />
-          </div>
+      {/* Charts */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 my-4">
+        {/* Pie Chart */}
+        <div className="card px-4 py-5">
+          <h5 className="font-medium mb-4">Task Distribution</h5>
+          <CustomPieChart
+            data={pieChartData}
+            label="Task Balance"
+            colors={COLORS}
+          />
         </div>
-        <div>
-          <div className="card">
-            <div className="flex items-center justify-between">
-              <h5 className="font-medium">Task Priority Level</h5>
-            </div>
 
-            <CustomBarChart data={barChartData} label="Task Balance" />
-          </div>
+        {/* Bar Chart */}
+        <div className="card px-4 py-5">
+          <h5 className="font-medium mb-4">Task Priority Level</h5>
+          <CustomBarChart data={barChartData} label="Task Balance" />
         </div>
-        <div className="md:col-span-2">
-          <div className="card">
-            <div className="flex items-center justify-between">
-              <h5 className="text-lg">Recent Tasks</h5>
-              <button className="card-btn" onClick={onSeeMore}>
-                See All <LuArrowRight className="text-base" />
-              </button>
-            </div>
-            <TaskListTable tableData={dashboardData?.recentTasks || []} />
-          </div>
+      </div>
+
+      {/* Recent Tasks */}
+      <div className="card px-4 py-5 mb-10">
+        <div className="flex items-center justify-between">
+          <h5 className="text-lg font-semibold">Recent Tasks</h5>
+          <button className="card-btn" onClick={onSeeMore}>
+            See All <LuArrowRight className="text-base ml-1" />
+          </button>
         </div>
+
+        <TaskListTable tableData={dashboardData?.recentTasks || []} />
       </div>
     </DashboardLayout>
   );
+
 }
 
 export default Dashboard

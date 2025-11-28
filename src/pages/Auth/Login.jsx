@@ -55,13 +55,13 @@ const Login = () => {
   
   return (
     <AuthLayout>
-      <div className="lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center">
-        <h3 className="text-xl font-semibold text-black">Welcome Back</h3>
-        <p className="text-xs text-slate-700 mt-[5px] mb-6">
-          Please enter your details to Log In
+      <div className="w-full h-auto mt-10 md:mt-0 flex flex-col justify-center px-4 md:px-8">
+        <h3 className="text-2xl font-semibold text-black">Welcome Back</h3>
+        <p className="text-sm text-slate-600 mt-1 mb-6">
+          Please enter your details to log in.
         </p>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className="space-y-6">
           <Input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -69,6 +69,7 @@ const Login = () => {
             placeholder="abc@gmail.com"
             type="text"
           />
+
           <Input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -77,15 +78,26 @@ const Login = () => {
             type="password"
           />
 
-          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-          <button type="submit" className="btn-primary">LOGIN</button>
-          <p className="text-[13px] text-slate-800 mt-3">
-            Don't have an account? {" "} <Link className="font-medium text-primary underlined" to="/signup">Sign Up</Link>
+          {error && <p className="text-red-500 text-xs -mt-3">{error}</p>}
+
+          <button
+            type="submit"
+            className="w-full bg-primary text-white py-3 rounded-xl text-sm font-medium shadow active:scale-[0.98] transition"
+          >
+            LOGIN
+          </button>
+
+          <p className="text-sm text-center text-slate-700">
+            Don’t have an account?{" "}
+            <Link className="font-semibold text-primary" to="/signup">
+              Sign Up
+            </Link>
           </p>
         </form>
       </div>
     </AuthLayout>
   );
+
 }
 
 export default Login

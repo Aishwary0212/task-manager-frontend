@@ -76,28 +76,36 @@ const ManageTasks = () => {
   }, [filterStatus]);
 
   return (
-    <DashboardLayout activeMenu={"Manage Tasks"}>
-      <div className="my-5">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-          <div className="flex items-center gap-3 justify-center">
-            <h2 className="text-xl md:text-xl font-medium">My Tasks</h2>
+    <DashboardLayout activeMenu="Manage Tasks">
+      <div className="my-4 px-2 md:px-0">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          {/* Title */}
+          <div className="flex items-center gap-3">
+            <h2 className="text-xl md:text-2xl font-semibold">My Tasks</h2>
+
+            {/* Mobile download button */}
             <button
-              className="flex lg:hidden download-btn"
+              className="flex md:hidden download-btn"
               onClick={handleDownloadReport}
             >
               <LuFileSpreadsheet className="text-lg" />
-              Download Report
+              Download
             </button>
           </div>
+
+          {/* Tabs + Desktop download */}
           {tabs?.[0]?.count > 0 && (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 overflow-x-auto pb-1">
               <TaskStatusTabs
                 tabs={tabs}
                 activeTab={filterStatus}
                 setActiveTab={setFilterStatus}
               />
+
+              {/* Desktop download button */}
               <button
-                className="hidden lg:flex download-btn"
+                className="hidden md:flex download-btn"
                 onClick={handleDownloadReport}
               >
                 <LuFileSpreadsheet className="text-lg" />
@@ -107,7 +115,8 @@ const ManageTasks = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
           {allTasks?.map((item) => (
             <TaskCard
               key={item._id}
@@ -131,6 +140,7 @@ const ManageTasks = () => {
       </div>
     </DashboardLayout>
   );
+
 };
 
 export default ManageTasks;

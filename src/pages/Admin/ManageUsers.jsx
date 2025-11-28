@@ -47,18 +47,22 @@ const ManageUsers = () => {
 
   return (
     <DashboardLayout activeMenu={"Team Members"}>
-      <div className="mt-5 mb-10">
-        <div className="flex md:flex-row md:items-center justify-between">
-          <h2 className="text-xl md:text-xl font-medium">Team Members</h2>
+      <div className="mt-5 mb-10 px-3 md:px-0">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <h2 className="text-xl md:text-2xl font-semibold">Team Members</h2>
+
           <button
-            className="flex md:dlex download-btn"
+            className="flex items-center gap-2 download-btn self-start md:self-auto"
             onClick={handleDownloadReport}
           >
             <LuFileSpreadsheet className="text-lg" />
             Download Report
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+
+        {/* Users Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
           {allUsers.map((user) => (
             <UserCard key={user._id} userInfo={user} />
           ))}
@@ -66,6 +70,7 @@ const ManageUsers = () => {
       </div>
     </DashboardLayout>
   );
+
 };
 
 export default ManageUsers;

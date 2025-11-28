@@ -85,20 +85,26 @@ const SignUp = () => {
         setError("Network error or server did not respond properly.");
       }
     }
-
   };
 
   return (
     <AuthLayout>
-      <div className="lg:w-full h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center">
-        <h3 className="text-xl font-semibold text-black">Create an Account</h3>
-        <p className="text-xs text-slate-700 mt-[5px] mb-6">
+      <div className="w-full h-auto mt-6 flex flex-col justify-center px-4 md:px-8">
+        <h3 className="text-2xl font-semibold text-black mb-1">
+          Create an Account
+        </h3>
+        <p className="text-sm text-slate-600 mb-6">
           Join us today by entering your details below.
         </p>
 
-        <form onSubmit={handleSignUp}>
-          <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSignUp} className="space-y-6">
+          {/* Profile image */}
+          <div className="flex justify-center">
+            <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
+          </div>
+
+          {/* Input fields */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Input
               value={fullName}
               onChange={({ target }) => setFullName(target.value)}
@@ -106,6 +112,7 @@ const SignUp = () => {
               placeholder="Enter Full Name"
               type="text"
             />
+
             <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -113,6 +120,7 @@ const SignUp = () => {
               placeholder="Enter Email"
               type="text"
             />
+
             <Input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -120,6 +128,7 @@ const SignUp = () => {
               placeholder="Enter Password"
               type="password"
             />
+
             <Input
               value={adminInviteToken}
               onChange={(e) => setAdminInviteToken(e.target.value)}
@@ -128,13 +137,22 @@ const SignUp = () => {
               type="text"
             />
           </div>
-          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-          <button type="submit" className="btn-primary">
+
+          {/* Error message */}
+          {error && <p className="text-red-500 text-xs -mt-3">{error}</p>}
+
+          {/* Button */}
+          <button
+            type="submit"
+            className="w-full bg-primary text-white py-3 rounded-xl text-sm font-medium shadow active:scale-[0.98] transition"
+          >
             SIGN UP
           </button>
-          <p className="text-[13px] text-slate-800 mt-3">
+
+          {/* Login link */}
+          <p className="text-sm text-center text-slate-700">
             Already have an account?{" "}
-            <Link className="font-medium text-primary underlined" to="/login">
+            <Link className="font-semibold text-primary" to="/login">
               Login
             </Link>
           </p>

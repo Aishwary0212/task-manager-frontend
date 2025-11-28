@@ -17,9 +17,12 @@ const TodoListInput = ({ todoList, setTodoList }) => {
   };
 
   return (
-    <div >
+    <div>
       {todoList.map((item, index) => (
-        <div key={index} className="flex justify-between bg-gray-100 border border-gray-100px-3 py-2 rounded-md mt-2">
+        <div
+          key={index}
+          className="flex justify-between bg-gray-100 border border-gray-100px-3 py-2 rounded-md mt-2"
+        >
           <p className="text-xs text-black">
             <span className="text-xs text-gray-400 font-semibold mr-2 pl-2">
               {index < 9 ? ` 0${index + 1}` : index + 1}.
@@ -27,9 +30,10 @@ const TodoListInput = ({ todoList, setTodoList }) => {
             {item}
           </p>
 
-              <button onClick={() => handleDeleteOption(index)}
-                  className="cursor-pointer pr-2"
-              >
+          <button
+            onClick={() => handleDeleteOption(index)}
+            className="cursor-pointer pr-2"
+          >
             <HiOutlineTrash className="text-lg text-red-500" />
           </button>
         </div>
@@ -43,11 +47,8 @@ const TodoListInput = ({ todoList, setTodoList }) => {
           onChange={({ target }) => setOption(target.value)}
           className="w-full text-[13px] text-black outline-none bg-white border border-gray-100 px-3 py-2 rounded-md"
         />
-        <button
-          className="card-btn text-nowrap"
-          onClick={handleAddOption}
-        >
-          <HiMiniPlus className="text-lg"/> Add
+        <button className="card-btn text-nowrap" onClick={handleAddOption}>
+          <HiMiniPlus className="text-lg" /> Add
         </button>
       </div>
     </div>

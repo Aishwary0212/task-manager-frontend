@@ -177,55 +177,58 @@ const CreateTask = () => {
   }, [taskId]);
   return (
     <DashboardLayout activeMenu={"Create Task"}>
-      <div className="mt-5">
-        <div className="grid grid-cols-1 md:grid-cols-4 mt-4">
-          <div className="form-card col-span-3">
-            {/* Heading */}
+      <div className="mt-5 px-3 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="form-card col-span-3 p-4 md:p-6">
+            {/* HEADER */}
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-medium">
+              <h2 className="text-xl md:text-2xl font-semibold">
                 {taskId ? "Update Task" : "Create Task"}
               </h2>
 
               {taskId && (
-                <button className="flex items-center gap-1.5 text-[13px] font-medium text-rose-500 bg-rose-50 rounded px-2 py-1 border border-rose-100" onClick={()=>setOpenDeleteAlert(true)}>
+                <button
+                  className="flex items-center gap-1.5 text-sm font-medium text-rose-500 bg-rose-50 px-2 py-1 rounded border border-rose-100"
+                  onClick={() => setOpenDeleteAlert(true)}
+                >
                   <LuTrash2 className="text-base" />
                   Delete
                 </button>
               )}
             </div>
 
-            {/* Title */}
-            <div className="mt-4">
+            {/* TITLE */}
+            <div className="mt-5">
               <label className="text-xs font-medium text-slate-600">
                 Task Title
               </label>
               <input
-                className="form-input"
+                className="form-input mt-1"
                 value={taskData.title}
                 onChange={(e) => handleValueChange("title", e.target.value)}
-                placeholder="Task Title"
+                placeholder="Enter task title"
               />
             </div>
 
-            {/* Description */}
-            <div className="mt-3">
+            {/* DESCRIPTION */}
+            <div className="mt-4">
               <label className="text-xs font-medium text-slate-600">
                 Task Description
               </label>
               <textarea
-                className="form-input"
                 rows={4}
+                className="form-input mt-1"
                 value={taskData.description}
                 onChange={(e) =>
                   handleValueChange("description", e.target.value)
                 }
-                placeholder="Describe the task"
+                placeholder="Describe the task in detail"
               />
             </div>
 
-            {/* Priority, Date, Assign */}
-            <div className="grid grid-cols-12 gap-4 mt-2">
-              <div className="col-span-6 md:col-span-4">
+            {/* PRIORITY – DATE – ASSIGN */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+              <div>
                 <label className="text-xs font-medium text-slate-600">
                   Priority
                 </label>
@@ -239,19 +242,19 @@ const CreateTask = () => {
                 />
               </div>
 
-              <div className="col-span-6 md:col-span-4">
+              <div>
                 <label className="text-xs font-medium text-slate-600">
                   Due Date
                 </label>
                 <input
                   type="date"
-                  className="form-input"
+                  className="form-input mt-1"
                   value={taskData.dueDate}
                   onChange={(e) => handleValueChange("dueDate", e.target.value)}
                 />
               </div>
 
-              <div className="col-span-12 md:col-span-3">
+              <div>
                 <label className="text-xs font-medium text-slate-600">
                   Assign To
                 </label>
@@ -264,8 +267,8 @@ const CreateTask = () => {
               </div>
             </div>
 
-            {/* Todo List */}
-            <div className="mt-3">
+            {/* TODO LIST */}
+            <div className="mt-4">
               <label className="text-xs font-medium text-slate-600">
                 ToDo Checklist
               </label>
@@ -275,8 +278,8 @@ const CreateTask = () => {
               />
             </div>
 
-            {/* Attachments */}
-            <div className="mt-3">
+            {/* ATTACHMENTS */}
+            <div className="mt-4">
               <label className="text-xs font-medium text-slate-600">
                 Add Attachments
               </label>
@@ -288,12 +291,13 @@ const CreateTask = () => {
               />
             </div>
 
+            {/* ERROR */}
             {error && (
-              <p className="text-xs font-medium text-red-500 mt-4">{error}</p>
+              <p className="text-xs font-semibold text-red-500 mt-4">{error}</p>
             )}
 
             {/* SUBMIT */}
-            <div className="flex justify-end mt-7">
+            <div className="flex justify-end mt-6">
               <button
                 className="add-btn"
                 onClick={handleSubmit}
@@ -305,17 +309,21 @@ const CreateTask = () => {
           </div>
         </div>
       </div>
+
+      {/* DELETE MODAL */}
       <Modal
         isOpen={openDeleteAlert}
         onClose={() => setOpenDeleteAlert(false)}
         title="Delete Task"
-      ><DeleteAlert
+      >
+        <DeleteAlert
           content="Are you sure you want to delete this task?"
-          onDelete={()=>deleteTask()}
+          onDelete={() => deleteTask()}
         />
       </Modal>
     </DashboardLayout>
   );
+
 };
 
 export default CreateTask;

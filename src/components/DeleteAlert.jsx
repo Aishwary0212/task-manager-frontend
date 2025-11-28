@@ -1,19 +1,21 @@
-import React from 'react'
+import React from "react";
 
 const DeleteAlert = ({ content, onDelete }) => {
-    
   return (
-      <div>
-          <p className='text-sm '>{content}</p>
-          <div className='flex justify-end mt-6'>
-              <button
-                  type='button'
-                  className='flex items-center justify-center gap-1.5 text-xs md:text-sm font-medium text-rose-500 whitespace-nowrap bg-rose-50  border border-rose-100 rounded-lg px-4 py-2 cursor-pointer'
-                  onClick={onDelete}
-              >Delete</button>
-          </div>
-    </div>
-  )
-}
+    <div>
+      <p className="text-sm text-slate-700 leading-relaxed">{content}</p>
 
-export default DeleteAlert
+      <div className="flex justify-end mt-6">
+        <button
+          type="button"
+          className="px-4 py-2 text-sm md:text-base font-medium text-rose-600 bg-rose-50 border border-rose-200 rounded-lg active:scale-[0.97] transition"
+          onClick={onDelete}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default DeleteAlert;
